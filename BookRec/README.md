@@ -55,14 +55,14 @@ UML Sequence Diagram
                                    ───┬────                                    ──────┬──────
                                       │                                              │
                                       │                                              │
-        1. Write genre to request.txt │────────────────>│request.txt|<───────────────|2. Read from request.txt
+        1. Write genre to request.txt │────────────────>│request.txt|<───────────────|2. Loop reading from request.txt until request appears
                                       │                                              │
                                       │                                              │
                                       │                                              │3. Process Request
-                                      │                                              │4. Select Book 
+                                      │                                              │4. Select appropriate book
                                       │                                              │
                                       │                                              │
-        6. Read recommended_book.json │──────────>│recommended_book.json|<───────────│5. Write book to recommended_book.json
+        6. Read recommended_book.json │──────────>│recommended_book.json|<───────────│5. Write the book's values to recommended_book.json
                                       │                                              │
                                       │                                              │
                                       │                                              │
