@@ -86,7 +86,6 @@ def get_book_recommendation(genre=None):
 
 
 if __name__ == "__main__":
-    
     while True:
         #read the request file
         with open('request.txt', 'r') as f:

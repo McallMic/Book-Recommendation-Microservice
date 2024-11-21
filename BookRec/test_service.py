@@ -28,7 +28,7 @@ def test_recommendation(genre):
  
 def run_tests(): 
     #specific genre test
-    test_recommendation("Science Fiction")
+    test_recommendation("Science Fiction")#just for example I am using Science Fiction
     time.sleep(1)
     #any genre test
     test_recommendation("Any")
