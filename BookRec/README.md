@@ -10,6 +10,7 @@ The microservice watches for requests through a 'request.txt' file. To request a
    - Or write "Any" to get a recommendation from any genre
 
 Example request (python):
+
   def request_book_recommendation(genre):
       with open('request.txt', 'w') as f:
           f.write(genre)
@@ -28,6 +29,7 @@ The microservice responds by writing the book recommendation to 'recommended_boo
 2. The response will contain book details in JSON format. You can pull out what you need.
 
 Example receiving code (python):
+
   import json
   
   def get_book_recommendation():
