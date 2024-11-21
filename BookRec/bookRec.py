@@ -3,22 +3,22 @@ import random
 import time
 
 
-#Book array with genres
+#Books with genres. in JSON format
 BOOKS = [
     #Fiction
     {
-        "title": "Tomorrow, and Tomorrow, and Tomorrow",
-        "author": "Gabrielle Zevin",
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
         "genre": "Fiction",
-        "goodreads_link": "https://www.goodreads.com/book/show/58784475-tomorrow-and-tomorrow-and-tomorrow",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1636978687i/58784475.jpg"
+        "goodreads_link": "https://www.goodreads.com/book/show/4671.The_Great_Gatsby",
+        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1490528560i/4671.jpg"
     },
     {
-        "title": "The Seven Husbands of Evelyn Hugo",
-        "author": "Taylor Jenkins Reid",
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoevsky",
         "genre": "Fiction",
-        "goodreads_link": "https://www.goodreads.com/book/show/32620332-the-seven-husbands-of-evelyn-hugo",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1664458761i/32620332.jpg"
+        "goodreads_link": "https://www.goodreads.com/book/show/7144.Crime_and_Punishment",
+        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144.jpg"
     },
     
     #Nonfiction
@@ -30,11 +30,11 @@ BOOKS = [
         "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg"
     },
     {
-        "title": "Sapiens: A Brief History of Humankind",
-        "author": "Yuval Noah Harari",
+        "title": "Into the Wild",
+        "author": "Jon Krakauer",
         "genre": "Nonfiction",
-        "goodreads_link": "https://www.goodreads.com/book/show/23692271-sapiens",
-        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1595674533i/23692271.jpg"
+        "goodreads_link": "https://www.goodreads.com/book/show/60869516-into-the-wild",
+        "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1650755924i/60869516.jpg"
     },
 
     #Fantasy
@@ -71,53 +71,34 @@ BOOKS = [
 ]
 
 def get_book_recommendation(genre=None):
-    """Get a random book recommendation, optionally filtered by genre"""
+    #get a random book recommendation, optionally filtered by genre
     if genre:
-        # Filter books by genre (case-insensitive)
+        #filter books by genre
         genre_books = [book for book in BOOKS if book['genre'].lower() == genre.lower()]
-        if not genre_books:
-            return {"error": f"No books found for genre: {genre}"}
         selected_book = random.choice(genre_books)
     else:
         selected_book = random.choice(BOOKS)
-    
-    # Write the selected book to a file
+    #write the selected book to the JSON file
     with open('recommended_book.json', 'w') as f:
         json.dump(selected_book, f, indent=2)
     
     return selected_book
 
 
-
 if __name__ == "__main__":
-   
-    print("Book recommendation service is running...")
-    print("Monitoring request.txt for genre requests...")
     
     while True:
-        try:
-            # Read the request file
-            with open('request.txt', 'r') as f:
-                request = f.read().strip()
-            
-            # Only process if there's content
-            if request:
-                # Set genre based on request
-                genre = None if request.lower() == "any" else request
-                
-                # Get and save the recommendation
-                book = get_book_recommendation(genre)
-
-                
-                # Clear the request file
-                with open('request.txt', 'w') as f:
-                    f.write('')
-            
-            # Small delay to prevent excessive CPU usage
-            time.sleep(0.1)
-            
-        except FileNotFoundError:
-            # Create request.txt if it doesn't exist
+        #read the request file
+        with open('request.txt', 'r') as f:
+            request = f.read().strip()  
+        #only process if there's a request
+        if request:
+            #set genre based on request
+            genre = None if request.lower() == "any" else request 
+            #get the recommendation
+            get_book_recommendation(genre) 
+            #clear the request file
             with open('request.txt', 'w') as f:
                 f.write('')
-            time.sleep(0.1)
+            
+        time.sleep(0.1)
