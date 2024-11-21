@@ -11,12 +11,12 @@ The microservice watches for requests through a 'request.txt' file. To request a
 
 Example request (python):
 
-  def request_book_recommendation(genre):
-      with open('request.txt', 'w') as f:
-          f.write(genre)
+def request_book_recommendation(genre):
+   with open('request.txt', 'w') as f:
+      f.write(genre)
   
-  #call
-  request_book_recommendation("Fantasy")
+#call
+request_book_recommendation("Fantasy")
 
 
 
@@ -30,11 +30,11 @@ The microservice responds by writing the book recommendation to 'recommended_boo
 
 Example receiving code (python):
 
-  import json
+import json
   
-  def get_book_recommendation():
-      with open('recommended_book.json', 'r') as f:
-          return json.load(f)
+def get_book_recommendation():
+   with open('recommended_book.json', 'r') as f:
+      return json.load(f)
   
   #call
   book = get_book_recommendation()
